@@ -4,24 +4,35 @@ format: html
 editor: visual
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
 
 ```{r}
 library(tidyverse)
-new_data <- read_csv("seda_admindist_annual_cs_2025.1.csv")
+new_data <- read_csv("seda_admindist_long_cs_2025.1.csv")
+```
+
+```{r}
 other <- read_csv("seda_cov_admindist_long_2025.1.csv")
 ```
 
-You can add options to executable code like this
 
+Question 1: Cleaning the data
 ```{r}
-
+new_data_clean <- new_data |> 
+  filter(stateabb == "CA") |> 
+  select(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) |>
+  rename()
 ```
+select columns for second data set
+join data sets
 
-The `echo: false` option disables the printing of code (only output is displayed).
+
+Question 2: Understanding the data
+summary table
+
+
+
+Question 3: Function
+
+
+
+
