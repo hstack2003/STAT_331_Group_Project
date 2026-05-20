@@ -15,13 +15,13 @@ When you click the **Render** button a document will be generated that includes 
 ```{r}
 library(tidyverse)
 new_data <- read_csv("seda_admindist_annual_cs_2025.1.csv")
+other <- read_csv("seda_cov_admindist_long_2025.1.csv")
 ```
 
 You can add options to executable code like this
 
 ```{r}
-#| echo: false
-2 * 2
+
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
