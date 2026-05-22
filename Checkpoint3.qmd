@@ -8,6 +8,7 @@ format:
     code-tools: true
     toc: true
 ---
+
 # Setup
 
 ```{r}
@@ -15,7 +16,7 @@ format:
 library(tidyverse)
 ```
 
-# About the Data 
+# About the Data
 
 | Variable        | Description                                     |
 |-----------------|-------------------------------------------------|
@@ -23,8 +24,8 @@ library(tidyverse)
 | `sedaadminname` | Administrative District Name                    |
 | `subject`       | Tested Subject                                  |
 | `grade`         | Tested Grade                                    |
-| `year`          | Spring of Tested Year                           |    
-| `fips`          | State FIPS Code                                 | 
+| `year`          | Spring of Tested Year                           |
+| `fips`          | State FIPS Code                                 |
 | `stateabb`      | State Abbreviation                              |
 | `cs_mn_all`     | Admin. Dist. Subject-Grade-Year Average         |
 | `tot_asmt_all`  | Total Number Tested in the Subject-Grade-Year   |
@@ -43,6 +44,11 @@ cov_data <- read_csv("seda_cov_admindist_long_2025.1.csv")
 # Cleaning and Understanding the Data
 
 **Question 1: Cleaning the data**
+Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps:
+1. For test_data, filter it to only include states that have the abbreviation CA for California
+2. Then select the columns shown in the "About the Data" above
+3. Rename the columns to something that is easier to read
+4. Now join the two datasets
 
 ```{r}
 test_data_clean <- test_data |> 
@@ -51,21 +57,19 @@ test_data_clean <- test_data |>
   rename()
 ```
 
-select columns for second data set join data sets
 
 Question 2: Understanding the data summary table
 
 # Functions
 
-**Question 3: ggplot Function**
-Next, we will write a function that operates on the original test scores dataset, with the following requirements:
+**Question 3: ggplot Function** Next, we will write a function that operates on the original test scores dataset, with the following requirements:
 
-- operates on the original `test_data` that is not limited to CA data 
-- takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations
-- uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average* (remember our embrace and walrus operators!) **for each state for the specified grade** 
-- contains input validation to ensure the grade is numeric and there are **no more than three states** specified 
-- applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes)
+-   operates on the original `test_data` that is not limited to CA data
+-   takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations
+-   uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average\* (remember our embrace and walrus operators!) **for each state for the specified grade**
+-   contains input validation to ensure the grade is numeric and there are **no more than three states** specified
+-   applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes)
 
-*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
+\*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
 
 *Note: We will provide an example output graph to make sure students understand the format requireed*
