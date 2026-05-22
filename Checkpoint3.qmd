@@ -1,19 +1,48 @@
 ---
 title: "3 Questions for Checkpoint 3"
-format: html
+author: "Ashley Martinez, Drew Collopy, Hannah Stackpole"
 editor: visual
+format: 
+  html:  
+    embed-resources: true
+    code-tools: true
+    toc: true
 ---
+# Setup
 
 ```{r}
+#load packages here
 library(tidyverse)
-test_data <- read_csv("seda_admindist_long_cs_2025.1.csv")
 ```
 
+# About the Data 
+
+| Variable        | Description                                     |
+|-----------------|-------------------------------------------------|
+| `sedaadmin`     | SEDA Admin ID                                   |
+| `sedaadminname` | Administrative District Name                    |
+| `subject`       | Tested Subject                                  |
+| `grade`         | Tested Grade                                    |
+| `year`          | Spring of Tested Year                           |    
+| `fips`          | State FIPS Code                                 | 
+| `stateabb`      | State Abbreviation                              |
+| `cs_mn_all`     | Admin. Dist. Subject-Grade-Year Average         |
+| `tot_asmt_all`  | Total Number Tested in the Subject-Grade-Year   |
+| `cs_mn_fem`     | Admin. Dist. Subject-Grade-Year Average Female  |
+| `tot_asmt_fem`  | Number Females Tested in the Subject-Grade-Year |
+| `cs_mn_mal`     | Admin. Dist. Subject-Grade-Year Average Male    |
+| `tot_asmt_mal`  | Number Males Tested in the Subject-Grade-Year   |
+
+# Reading in the Data
+
 ```{r}
+test_data <- read_csv("seda_admindist_long_cs_2025.1.csv")
 cov_data <- read_csv("seda_cov_admindist_long_2025.1.csv")
 ```
 
-Question 1: Cleaning the data
+# Cleaning and Understanding the Data
+
+**Question 1: Cleaning the data**
 
 ```{r}
 test_data_clean <- test_data |> 
@@ -26,8 +55,11 @@ select columns for second data set join data sets
 
 Question 2: Understanding the data summary table
 
-**Question 3:** Function
+# Functions
+
+**Question 3: ggplot Function**
 Next, we will write a function that operates on the original test scores dataset, with the following requirements:
+
 - operates on the original `test_data` that is not limited to CA data 
 - takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations
 - uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average* (remember our embrace and walrus operators!) **for each state for the specified grade** 
