@@ -6,17 +6,17 @@ editor: visual
 
 ```{r}
 library(tidyverse)
-new_data <- read_csv("seda_admindist_long_cs_2025.1.csv")
+test_data <- read_csv("seda_admindist_long_cs_2025.1.csv")
 ```
 
 ```{r}
-other <- read_csv("seda_cov_admindist_long_2025.1.csv")
+cov_data <- read_csv("seda_cov_admindist_long_2025.1.csv")
 ```
 
 Question 1: Cleaning the data
 
 ```{r}
-new_data_clean <- new_data |> 
+test_data_clean <- test_data |> 
   filter(stateabb == "CA") |> 
   select(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) |>
   rename()
@@ -26,4 +26,14 @@ select columns for second data set join data sets
 
 Question 2: Understanding the data summary table
 
-Question 3: Function - Hannah
+**Question 3:** Function
+Next, we will write a function that operates on the original test scores dataset, with the following requirements:
+- operates on the original `test_data` that is not limited to CA data 
+- takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations
+- uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average* (remember our embrace and walrus operators!) **for each state for the specified grade** 
+- contains input validation to ensure the grade is numeric and there are **no more than three states** specified 
+- applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes)
+
+*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
+
+*Note: We will provide an example output graph to make sure students understand the format requireed*
