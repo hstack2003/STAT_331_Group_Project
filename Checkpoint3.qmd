@@ -18,6 +18,21 @@ library(tidyverse)
 
 # About the Data
 
+The data for this lab comes from The Stanford Education Data Archive (SEDA), which is maintained by the Educational Opportunity Project (EOP) at Stanford University (https:\\edopportunity.org). There is a plethora of nationwide data on academic achievement and school demographics/inequality. 
+
+We will focus on a "long" dataset that contains math and Reading/English Language Arts (RLA) performance for administrative school districts in the U.S. for the  2008-09 through 2018-19 and 2021-22 through 2024-25 school years. 
+
+While the construction of the data uses a complex model, it is important to understand that these are not raw test scores. Rather, they are cohort-standardized scores. This means that the values can be interpreted as the number of standard deviations above or below the national average scores of four reference groups (students who were in fourth grade in the years 2009, 2011, 2013, and 2015). 
+
+Practically speaking, this means that the estimates are comparable across time and across places, but not across grades or subjects. Please keep this in mind when designing graphs/analyses. If you would like to learn more about our data, you can check out the following resources:
+
+- [Technical Documentation](https://stacks.stanford.edu/file/hm970gr1371/SEDA_documentation_v2025.1.pdf#page=4.36)
+- [SEDA site (information about the project and downloadable codebooks with variable descriptions)](https://edopportunity.org/trends/data/downloads/#testscore-2025)
+
+*Note: the relevant codebooks are `seda_codebook_admindist_2025.1` and `seda_codebook_cov_admindist_2025.1`. You will need to navigate to the sheets that match the file names for our specific datasets.*
+
+Below are descriptions of the test data variables we will focus on, but you are encouraged to check out the codebook if you wish to explore other variables. 
+
 | Variable        | Description                                     |
 |-----------------|-------------------------------------------------|
 | `sedaadmin`     | SEDA Admin ID                                   |
@@ -33,6 +48,9 @@ library(tidyverse)
 | `tot_asmt_fem`  | Number Females Tested in the Subject-Grade-Year |
 | `cs_mn_mal`     | Admin. Dist. Subject-Grade-Year Average Male    |
 | `tot_asmt_mal`  | Number Males Tested in the Subject-Grade-Year   |
+
+The covariate data contains a variety of data on city size, school locale, school demographics, student poverty rates (measured by free/reduced school lunch status), household income and unemployment data, and school diversity/"segregation" measures. 
+
 
 # Reading in the Data
 
