@@ -60,7 +60,12 @@ cov_data <- read_csv("seda_cov_admindist_long_2025.1.csv")
 
 # Cleaning and Understanding the Data
 
-**Question 1: Cleaning the data** Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps: 1. For test_data, filter it to only include states that have the abbreviation CA for California 2. Then select the columns shown in the "About the Data" above 3. Rename the columns to something that is easier to read 4. Now join the two datasets
+**Question 1: Cleaning the data** Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps: 
+
+1. For test_data, filter it to only include states that have the abbreviation CA for California 
+2. Then select the columns shown in the "About the Data" above 
+3. Rename the columns to something that is easier to read 
+4. Now join the two datasets
 
 ```{r}
 test_data_clean <- test_data |> 
@@ -70,6 +75,7 @@ test_data_clean <- test_data |>
 ```
 
 Question 2: Understanding the data summary table
+
 - function called summary_table() 
 - use test_data dataset which was orginally seda admindist long and use variables subject, grade, and cs_mn_all 
 -Subject= Tested subject(Math or RLA), grade= Tested Grade , cs_mn_all = Average achievement score for all students
@@ -87,6 +93,6 @@ Question 2: Understanding the data summary table
 -   contains input validation to ensure the grade is numeric and there are **no more than three states** specified
 -   applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes)
 
-\*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
+*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
 
 *Note: We will provide an example output graph to make sure students understand the format requireed*
