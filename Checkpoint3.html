@@ -2284,6 +2284,8 @@ vertical-align: -.125em;
 </section>
 <section id="about-the-data" class="level1">
 <h1>About the Data</h1>
+<p><a href="seda_admindist_long_cs_2025.1.csv">Download test score data</a></p>
+<p><a href="seda_cov_admindist_long_2025.1_csv">Download covariate data</a></p>
 <p>The data for this lab comes from The Stanford Education Data Archive (SEDA), which is maintained by the Educational Opportunity Project (EOP) at Stanford University (https:\edopportunity.org). There is a plethora of nationwide data on academic achievement and school demographics/inequality.</p>
 <p>We will focus on a “long” dataset that contains math and Reading/English Language Arts (RLA) performance for administrative school districts in the U.S. for the 2008-09 through 2018-19 and 2021-22 through 2024-25 school years.</p>
 <p>While the construction of the data uses a complex model, it is important to understand that these are not raw test scores. Rather, they are cohort-standardized scores. This means that the values can be interpreted as the number of standard deviations above or below the national average scores of four reference groups (students who were in fourth grade in the years 2009, 2011, 2013, and 2015).</p>
@@ -2903,84 +2905,88 @@ dbl (95): sedaadmin, year, grade, fips, gshi, urban, suburb, town, rural, lo...
 <span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># About the Data</span></span>
 <span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>The data for this lab comes from The Stanford Education Data Archive (SEDA), which is maintained by the Educational Opportunity Project (EOP) at Stanford University (https:<span class="sc">\\</span>edopportunity.org). There is a plethora of nationwide data on academic achievement and school demographics/inequality.</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download test score data</span><span class="co">](seda_admindist_long_cs_2025.1.csv)</span></span>
 <span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>We will focus on a &quot;long&quot; dataset that contains math and Reading/English Language Arts (RLA) performance for administrative school districts in the U.S. for the 2008-09 through 2018-19 and 2021-22 through 2024-25 school years.</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download covariate data</span><span class="co">](seda_cov_admindist_long_2025.1_csv)</span></span>
 <span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>While the construction of the data uses a complex model, it is important to understand that these are not raw test scores. Rather, they are cohort-standardized scores. This means that the values can be interpreted as the number of standard deviations above or below the national average scores of four reference groups (students who were in fourth grade in the years 2009, 2011, 2013, and 2015).</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>The data for this lab comes from The Stanford Education Data Archive (SEDA), which is maintained by the Educational Opportunity Project (EOP) at Stanford University (https:<span class="sc">\\</span>edopportunity.org). There is a plethora of nationwide data on academic achievement and school demographics/inequality.</span>
 <span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>Practically speaking, this means that the estimates are comparable across time and across places, but not across grades or subjects. Please keep this in mind when designing graphs/analyses. If you would like to learn more about our data, you can check out the following resources:</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>We will focus on a &quot;long&quot; dataset that contains math and Reading/English Language Arts (RLA) performance for administrative school districts in the U.S. for the 2008-09 through 2018-19 and 2021-22 through 2024-25 school years.</span>
 <span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Technical Documentation</span><span class="co">](https://stacks.stanford.edu/file/hm970gr1371/SEDA_documentation_v2025.1.pdf#page=4.36)</span></span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">SEDA site (information about the project and downloadable codebooks with variable descriptions)</span><span class="co">](https://edopportunity.org/trends/data/downloads/#testscore-2025)</span></span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>*Note: the relevant codebooks are `seda_codebook_admindist_2025.1` and `seda_codebook_cov_admindist_2025.1`. You will need to navigate to the sheets that match the file names for our specific datasets.*</span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>Below are descriptions of the test data variables we will focus on, but you are encouraged to check out the codebook if you wish to explore other variables.</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>While the construction of the data uses a complex model, it is important to understand that these are not raw test scores. Rather, they are cohort-standardized scores. This means that the values can be interpreted as the number of standard deviations above or below the national average scores of four reference groups (students who were in fourth grade in the years 2009, 2011, 2013, and 2015).</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>Practically speaking, this means that the estimates are comparable across time and across places, but not across grades or subjects. Please keep this in mind when designing graphs/analyses. If you would like to learn more about our data, you can check out the following resources:</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Technical Documentation</span><span class="co">](https://stacks.stanford.edu/file/hm970gr1371/SEDA_documentation_v2025.1.pdf#page=4.36)</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">SEDA site (information about the project and downloadable codebooks with variable descriptions)</span><span class="co">](https://edopportunity.org/trends/data/downloads/#testscore-2025)</span></span>
 <span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable        <span class="pp">|</span> Description                                     <span class="pp">|</span></span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------------|-------------------------------------------------|</span></span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sedaadmin`</span>     <span class="pp">|</span> SEDA Admin ID                                   <span class="pp">|</span></span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sedaadminname`</span> <span class="pp">|</span> Administrative District Name                    <span class="pp">|</span></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`subject`</span>       <span class="pp">|</span> Tested Subject                                  <span class="pp">|</span></span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`grade`</span>         <span class="pp">|</span> Tested Grade                                    <span class="pp">|</span></span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`year`</span>          <span class="pp">|</span> Spring of Tested Year                           <span class="pp">|</span></span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`fips`</span>          <span class="pp">|</span> State FIPS Code                                 <span class="pp">|</span></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`stateabb`</span>      <span class="pp">|</span> State Abbreviation                              <span class="pp">|</span></span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_all`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average         <span class="pp">|</span></span>
-<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_all`</span>  <span class="pp">|</span> Total Number Tested in the Subject-Grade-Year   <span class="pp">|</span></span>
-<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_fem`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average Female  <span class="pp">|</span></span>
-<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_fem`</span>  <span class="pp">|</span> Number Females Tested in the Subject-Grade-Year <span class="pp">|</span></span>
-<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_mal`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average Male    <span class="pp">|</span></span>
-<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_mal`</span>  <span class="pp">|</span> Number Males Tested in the Subject-Grade-Year   <span class="pp">|</span></span>
-<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>The covariate data contains a variety of data on city size, school locale, school demographics, student poverty rates (measured by free/reduced school lunch status), household income and unemployment data, and school diversity/&quot;segregation&quot; measures.</span>
-<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="fu"># Reading in the Data</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>*Note: the relevant codebooks are `seda_codebook_admindist_2025.1` and `seda_codebook_cov_admindist_2025.1`. You will need to navigate to the sheets that match the file names for our specific datasets.*</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>Below are descriptions of the test data variables we will focus on, but you are encouraged to check out the codebook if you wish to explore other variables.</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable        <span class="pp">|</span> Description                                     <span class="pp">|</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------------|-------------------------------------------------|</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sedaadmin`</span>     <span class="pp">|</span> SEDA Admin ID                                   <span class="pp">|</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sedaadminname`</span> <span class="pp">|</span> Administrative District Name                    <span class="pp">|</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`subject`</span>       <span class="pp">|</span> Tested Subject                                  <span class="pp">|</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`grade`</span>         <span class="pp">|</span> Tested Grade                                    <span class="pp">|</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`year`</span>          <span class="pp">|</span> Spring of Tested Year                           <span class="pp">|</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`fips`</span>          <span class="pp">|</span> State FIPS Code                                 <span class="pp">|</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`stateabb`</span>      <span class="pp">|</span> State Abbreviation                              <span class="pp">|</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_all`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average         <span class="pp">|</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_all`</span>  <span class="pp">|</span> Total Number Tested in the Subject-Grade-Year   <span class="pp">|</span></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_fem`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average Female  <span class="pp">|</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_fem`</span>  <span class="pp">|</span> Number Females Tested in the Subject-Grade-Year <span class="pp">|</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_mal`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average Male    <span class="pp">|</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_mal`</span>  <span class="pp">|</span> Number Males Tested in the Subject-Grade-Year   <span class="pp">|</span></span>
 <span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_admindist_long_cs_2025.1.csv&quot;</span>)</span>
-<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>cov_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_cov_admindist_long_2025.1.csv&quot;</span>)</span>
-<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cleaning and Understanding the Data</span></span>
-<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>**Question 1: Cleaning the data** Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps: </span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>The covariate data contains a variety of data on city size, school locale, school demographics, student poverty rates (measured by free/reduced school lunch status), household income and unemployment data, and school diversity/&quot;segregation&quot; measures.</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a><span class="fu"># Reading in the Data</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_admindist_long_cs_2025.1.csv&quot;</span>)</span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>cov_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_cov_admindist_long_2025.1.csv&quot;</span>)</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>For test_data, filter it to only include states that have the abbreviation CA for California </span>
-<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Then select the columns shown in the &quot;About the Data&quot; above </span>
-<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Rename the columns to something that is easier to read </span>
-<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Now join the two datasets</span>
-<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>test_data_clean <span class="ot">&lt;-</span> test_data <span class="sc">|&gt;</span> </span>
-<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stateabb <span class="sc">==</span> <span class="st">&quot;CA&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) <span class="sc">|&gt;</span></span>
-<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>()</span>
-<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>Question 2: Understanding the data summary table</span>
-<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>function called summary_table() </span>
-<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>use test_data dataset which was orginally seda admindist long and use variables subject, grade, and cs_mn_all </span>
-<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>-Subject= Tested subject(Math or RLA), grade= Tested Grade , cs_mn_all = Average achievement score for all students</span>
-<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>group by subject and grade level </span>
-<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>find the average achievement score using cs_mn_all </span>
-<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>summarize the number of observations within each group</span>
-<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Determine any missing values</span>
-<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The summary table will then be returned. This will enable us to comprehend grade-level and subject patterns. </span>
-<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a>**Question 3: ggplot Function** Next, we will write a function that operates on the original test scores dataset, with the following requirements:</span>
-<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>operates on the original <span class="in">`test_data`</span> that is not limited to CA data</span>
-<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations</span>
-<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average\* (remember our embrace and walrus operators!) **for each state for the specified grade**</span>
-<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>contains input validation to ensure the grade is numeric and there are **no more than three states** specified</span>
-<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes)</span>
-<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!</span>
-<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>*Note: We will provide an example output graph to make sure students understand the format requireed*</span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cleaning and Understanding the Data</span></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>**Question 1: Cleaning the data** Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps: </span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>For test_data, filter it to only include states that have the abbreviation CA for California </span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Then select the columns shown in the &quot;About the Data&quot; above </span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Rename the columns to something that is easier to read </span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Now join the two datasets</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>test_data_clean <span class="ot">&lt;-</span> test_data <span class="sc">|&gt;</span> </span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stateabb <span class="sc">==</span> <span class="st">&quot;CA&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) <span class="sc">|&gt;</span></span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>()</span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>Question 2: Understanding the data summary table</span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>function called summary_table() </span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>use test_data dataset which was orginally seda admindist long and use variables subject, grade, and cs_mn_all </span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a>-Subject= Tested subject(Math or RLA), grade= Tested Grade , cs_mn_all = Average achievement score for all students</span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>group by subject and grade level </span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>find the average achievement score using cs_mn_all </span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>summarize the number of observations within each group</span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Determine any missing values</span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The summary table will then be returned. This will enable us to comprehend grade-level and subject patterns. </span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>**Question 3: ggplot Function** Next, we will write a function that operates on the original test scores dataset, with the following requirements:</span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>operates on the original <span class="in">`test_data`</span> that is not limited to CA data</span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations</span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average\* (remember our embrace and walrus operators!) **for each state for the specified grade**</span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>contains input validation to ensure the grade is numeric and there are **no more than three states** specified</span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes)</span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!</span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>*Note: We will provide an example output graph to make sure students understand the format requireed*</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -18,6 +18,10 @@ library(tidyverse)
 
 # About the Data
 
+[Download test score data](seda_admindist_long_cs_2025.1.csv)
+
+[Download covariate data](seda_cov_admindist_long_2025.1_csv)
+
 The data for this lab comes from The Stanford Education Data Archive (SEDA), which is maintained by the Educational Opportunity Project (EOP) at Stanford University (https:\\edopportunity.org). There is a plethora of nationwide data on academic achievement and school demographics/inequality.
 
 We will focus on a "long" dataset that contains math and Reading/English Language Arts (RLA) performance for administrative school districts in the U.S. for the 2008-09 through 2018-19 and 2021-22 through 2024-25 school years.
