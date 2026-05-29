@@ -2,11 +2,15 @@
 title: "3 Questions for Checkpoint 3"
 author: "Ashley Martinez, Drew Collopy, Hannah Stackpole"
 editor: visual
-format: 
-  html:  
-    embed-resources: true
-    code-tools: true
-    toc: true
+format: html 
+embed-resources: true
+code-tools: true
+toc: true
+execute:
+  echo: true
+  message: false
+  warning: false
+  error: true
 ---
 
 # Setup
@@ -20,7 +24,7 @@ library(tidyverse)
 
 [Download test score data](seda_admindist_long_cs_2025.1.csv)
 
-[Download covariate data](seda_cov_admindist_long_2025.1_csv)
+[Download covariate data](seda_cov_admindist_long_2025.1.csv)
 
 The data for this lab comes from The Stanford Education Data Archive (SEDA), which is maintained by the Educational Opportunity Project (EOP) at Stanford University (https:\\edopportunity.org). There is a plethora of nationwide data on academic achievement and school demographics/inequality.
 

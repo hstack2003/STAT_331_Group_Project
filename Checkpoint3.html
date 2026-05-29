@@ -2247,39 +2247,6 @@ vertical-align: -.125em;
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load packages here</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package &#39;ggplot2&#39; was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package &#39;tibble&#39; was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package &#39;tidyr&#39; was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package &#39;readr&#39; was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package &#39;purrr&#39; was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package &#39;dplyr&#39; was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package &#39;lubridate&#39; was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.2.0     ✔ readr     2.2.0
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.2     ✔ tibble    3.3.1
-✔ lubridate 1.9.5     ✔ tidyr     1.3.2
-✔ purrr     1.2.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
 </div>
 </section>
 <section id="about-the-data" class="level1">
@@ -2363,34 +2330,8 @@ vertical-align: -.125em;
 <section id="reading-in-the-data" class="level1">
 <h1>Reading in the Data</h1>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_admindist_long_cs_2025.1.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 1830037 Columns: 58
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: &quot;,&quot;
-chr  (3): sedaadminname, subject, stateabb
-dbl (55): sedaadmin, grade, year, fips, multi_comp, cs_mn_all, cs_mn_se_all,...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cov_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_cov_admindist_long_2025.1.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
-e.g.:
-  dat &lt;- vroom(...)
-  problems(dat)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 1585301 Columns: 99
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: &quot;,&quot;
-chr  (4): sedaadminname, stateabb, gslo, urbanicity
-dbl (95): sedaadmin, year, grade, fips, gshi, urban, suburb, town, rural, lo...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_admindist_long_cs_2025.1.csv&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cov_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_cov_admindist_long_2025.1.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="cleaning-and-understanding-the-data" class="level1">
@@ -2403,10 +2344,10 @@ dbl (95): sedaadmin, year, grade, fips, gshi, urban, suburb, town, rural, lo...
 <li>Now join the two datasets</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>test_data_clean <span class="ot">&lt;-</span> test_data <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stateabb <span class="sc">==</span> <span class="st">&quot;CA&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>test_data_clean <span class="ot">&lt;-</span> test_data <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stateabb <span class="sc">==</span> <span class="st">&quot;CA&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Question 2: Understanding the data summary table</p>
 <ul>
@@ -2885,108 +2826,112 @@ dbl (95): sedaadmin, year, grade, fips, gshi, urban, suburb, town, rural, lo...
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;3 Questions for Checkpoint 3&quot;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Ashley Martinez, Drew Collopy, Hannah Stackpole&quot;</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:  </span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#load packages here</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># About the Data</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download test score data</span><span class="co">](seda_admindist_long_cs_2025.1.csv)</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download covariate data</span><span class="co">](seda_cov_admindist_long_2025.1_csv)</span></span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>The data for this lab comes from The Stanford Education Data Archive (SEDA), which is maintained by the Educational Opportunity Project (EOP) at Stanford University (https:<span class="sc">\\</span>edopportunity.org). There is a plethora of nationwide data on academic achievement and school demographics/inequality.</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>We will focus on a &quot;long&quot; dataset that contains math and Reading/English Language Arts (RLA) performance for administrative school districts in the U.S. for the 2008-09 through 2018-19 and 2021-22 through 2024-25 school years.</span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>While the construction of the data uses a complex model, it is important to understand that these are not raw test scores. Rather, they are cohort-standardized scores. This means that the values can be interpreted as the number of standard deviations above or below the national average scores of four reference groups (students who were in fourth grade in the years 2009, 2011, 2013, and 2015).</span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>Practically speaking, this means that the estimates are comparable across time and across places, but not across grades or subjects. Please keep this in mind when designing graphs/analyses. If you would like to learn more about our data, you can check out the following resources:</span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Technical Documentation</span><span class="co">](https://stacks.stanford.edu/file/hm970gr1371/SEDA_documentation_v2025.1.pdf#page=4.36)</span></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">SEDA site (information about the project and downloadable codebooks with variable descriptions)</span><span class="co">](https://edopportunity.org/trends/data/downloads/#testscore-2025)</span></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>*Note: the relevant codebooks are `seda_codebook_admindist_2025.1` and `seda_codebook_cov_admindist_2025.1`. You will need to navigate to the sheets that match the file names for our specific datasets.*</span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>Below are descriptions of the test data variables we will focus on, but you are encouraged to check out the codebook if you wish to explore other variables.</span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable        <span class="pp">|</span> Description                                     <span class="pp">|</span></span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------------|-------------------------------------------------|</span></span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sedaadmin`</span>     <span class="pp">|</span> SEDA Admin ID                                   <span class="pp">|</span></span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sedaadminname`</span> <span class="pp">|</span> Administrative District Name                    <span class="pp">|</span></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`subject`</span>       <span class="pp">|</span> Tested Subject                                  <span class="pp">|</span></span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`grade`</span>         <span class="pp">|</span> Tested Grade                                    <span class="pp">|</span></span>
-<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`year`</span>          <span class="pp">|</span> Spring of Tested Year                           <span class="pp">|</span></span>
-<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`fips`</span>          <span class="pp">|</span> State FIPS Code                                 <span class="pp">|</span></span>
-<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`stateabb`</span>      <span class="pp">|</span> State Abbreviation                              <span class="pp">|</span></span>
-<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_all`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average         <span class="pp">|</span></span>
-<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_all`</span>  <span class="pp">|</span> Total Number Tested in the Subject-Grade-Year   <span class="pp">|</span></span>
-<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_fem`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average Female  <span class="pp">|</span></span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_fem`</span>  <span class="pp">|</span> Number Females Tested in the Subject-Grade-Year <span class="pp">|</span></span>
-<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_mal`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average Male    <span class="pp">|</span></span>
-<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_mal`</span>  <span class="pp">|</span> Number Males Tested in the Subject-Grade-Year   <span class="pp">|</span></span>
-<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>The covariate data contains a variety of data on city size, school locale, school demographics, student poverty rates (measured by free/reduced school lunch status), household income and unemployment data, and school diversity/&quot;segregation&quot; measures.</span>
-<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a><span class="fu"># Reading in the Data</span></span>
-<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_admindist_long_cs_2025.1.csv&quot;</span>)</span>
-<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>cov_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_cov_admindist_long_2025.1.csv&quot;</span>)</span>
-<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cleaning and Understanding the Data</span></span>
-<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>**Question 1: Cleaning the data** Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps: </span>
-<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>For test_data, filter it to only include states that have the abbreviation CA for California </span>
-<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Then select the columns shown in the &quot;About the Data&quot; above </span>
-<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Rename the columns to something that is easier to read </span>
-<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Now join the two datasets</span>
-<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>test_data_clean <span class="ot">&lt;-</span> test_data <span class="sc">|&gt;</span> </span>
-<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stateabb <span class="sc">==</span> <span class="st">&quot;CA&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) <span class="sc">|&gt;</span></span>
-<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>()</span>
-<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>Question 2: Understanding the data summary table</span>
-<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>function called summary_table() </span>
-<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>use test_data dataset which was orginally seda admindist long and use variables subject, grade, and cs_mn_all </span>
-<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a>-Subject= Tested subject(Math or RLA), grade= Tested Grade , cs_mn_all = Average achievement score for all students</span>
-<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>group by subject and grade level </span>
-<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>find the average achievement score using cs_mn_all </span>
-<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>summarize the number of observations within each group</span>
-<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Determine any missing values</span>
-<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The summary table will then be returned. This will enable us to comprehend grade-level and subject patterns. </span>
-<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>**Question 3: ggplot Function** Next, we will write a function that operates on the original test scores dataset, with the following requirements:</span>
-<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>operates on the original <span class="in">`test_data`</span> that is not limited to CA data</span>
-<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations</span>
-<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average\* (remember our embrace and walrus operators!) **for each state for the specified grade**</span>
-<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>contains input validation to ensure the grade is numeric and there are **no more than three states** specified</span>
-<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes)</span>
-<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!</span>
-<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>*Note: We will provide an example output graph to make sure students understand the format requireed*</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;3 Questions for Checkpoint 3&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Ashley Martinez, Drew Collopy, Hannah Stackpole&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="an">embed-resources:</span><span class="co"> true</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">  error: true</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#load packages here</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># About the Data</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download test score data</span><span class="co">](seda_admindist_long_cs_2025.1.csv)</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download covariate data</span><span class="co">](seda_cov_admindist_long_2025.1_csv)</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>The data for this lab comes from The Stanford Education Data Archive (SEDA), which is maintained by the Educational Opportunity Project (EOP) at Stanford University (https:<span class="sc">\\</span>edopportunity.org). There is a plethora of nationwide data on academic achievement and school demographics/inequality.</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>We will focus on a &quot;long&quot; dataset that contains math and Reading/English Language Arts (RLA) performance for administrative school districts in the U.S. for the 2008-09 through 2018-19 and 2021-22 through 2024-25 school years.</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>While the construction of the data uses a complex model, it is important to understand that these are not raw test scores. Rather, they are cohort-standardized scores. This means that the values can be interpreted as the number of standard deviations above or below the national average scores of four reference groups (students who were in fourth grade in the years 2009, 2011, 2013, and 2015).</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>Practically speaking, this means that the estimates are comparable across time and across places, but not across grades or subjects. Please keep this in mind when designing graphs/analyses. If you would like to learn more about our data, you can check out the following resources:</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Technical Documentation</span><span class="co">](https://stacks.stanford.edu/file/hm970gr1371/SEDA_documentation_v2025.1.pdf#page=4.36)</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">SEDA site (information about the project and downloadable codebooks with variable descriptions)</span><span class="co">](https://edopportunity.org/trends/data/downloads/#testscore-2025)</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>*Note: the relevant codebooks are `seda_codebook_admindist_2025.1` and `seda_codebook_cov_admindist_2025.1`. You will need to navigate to the sheets that match the file names for our specific datasets.*</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>Below are descriptions of the test data variables we will focus on, but you are encouraged to check out the codebook if you wish to explore other variables.</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable        <span class="pp">|</span> Description                                     <span class="pp">|</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------------|-------------------------------------------------|</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sedaadmin`</span>     <span class="pp">|</span> SEDA Admin ID                                   <span class="pp">|</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sedaadminname`</span> <span class="pp">|</span> Administrative District Name                    <span class="pp">|</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`subject`</span>       <span class="pp">|</span> Tested Subject                                  <span class="pp">|</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`grade`</span>         <span class="pp">|</span> Tested Grade                                    <span class="pp">|</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`year`</span>          <span class="pp">|</span> Spring of Tested Year                           <span class="pp">|</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`fips`</span>          <span class="pp">|</span> State FIPS Code                                 <span class="pp">|</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`stateabb`</span>      <span class="pp">|</span> State Abbreviation                              <span class="pp">|</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_all`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average         <span class="pp">|</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_all`</span>  <span class="pp">|</span> Total Number Tested in the Subject-Grade-Year   <span class="pp">|</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_fem`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average Female  <span class="pp">|</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_fem`</span>  <span class="pp">|</span> Number Females Tested in the Subject-Grade-Year <span class="pp">|</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cs_mn_mal`</span>     <span class="pp">|</span> Admin. Dist. Subject-Grade-Year Average Male    <span class="pp">|</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tot_asmt_mal`</span>  <span class="pp">|</span> Number Males Tested in the Subject-Grade-Year   <span class="pp">|</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>The covariate data contains a variety of data on city size, school locale, school demographics, student poverty rates (measured by free/reduced school lunch status), household income and unemployment data, and school diversity/&quot;segregation&quot; measures.</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="fu"># Reading in the Data</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_admindist_long_cs_2025.1.csv&quot;</span>)</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>cov_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;seda_cov_admindist_long_2025.1.csv&quot;</span>)</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cleaning and Understanding the Data</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>**Question 1: Cleaning the data** Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps: </span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>For test_data, filter it to only include states that have the abbreviation CA for California </span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Then select the columns shown in the &quot;About the Data&quot; above </span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Rename the columns to something that is easier to read </span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Now join the two datasets</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>test_data_clean <span class="ot">&lt;-</span> test_data <span class="sc">|&gt;</span> </span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stateabb <span class="sc">==</span> <span class="st">&quot;CA&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) <span class="sc">|&gt;</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>()</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>Question 2: Understanding the data summary table</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>function called summary_table() </span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>use test_data dataset which was orginally seda admindist long and use variables subject, grade, and cs_mn_all </span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>-Subject= Tested subject(Math or RLA), grade= Tested Grade , cs_mn_all = Average achievement score for all students</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>group by subject and grade level </span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>find the average achievement score using cs_mn_all </span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>summarize the number of observations within each group</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Determine any missing values</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The summary table will then be returned. This will enable us to comprehend grade-level and subject patterns. </span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>**Question 3: ggplot Function** Next, we will write a function that operates on the original test scores dataset, with the following requirements:</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>operates on the original <span class="in">`test_data`</span> that is not limited to CA data</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average\* (remember our embrace and walrus operators!) **for each state for the specified grade**</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>contains input validation to ensure the grade is numeric and there are **no more than three states** specified</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes)</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>*Note: We will provide an example output graph to make sure students understand the format requireed*</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
