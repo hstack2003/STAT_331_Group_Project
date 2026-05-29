@@ -18,9 +18,13 @@ execute:
 ```{r}
 #load packages here
 library(tidyverse)
+library(ggplot2)
+library(ggthemes)
 ```
 
 # About the Data
+
+Please download the following data and then take the time to read the paragraphs below. It is necessary to understand the data. 
 
 [Download test score data](seda_admindist_long_cs_2025.1.csv)
 
@@ -61,7 +65,7 @@ The covariate data contains a variety of data on city size, school locale, schoo
 
 # Reading in the Data
 
-```{r}
+```{r read-data}
 test_data <- read_csv("seda_admindist_long_cs_2025.1.csv")
 cov_data <- read_csv("seda_cov_admindist_long_2025.1.csv")
 ```
@@ -75,7 +79,7 @@ cov_data <- read_csv("seda_cov_admindist_long_2025.1.csv")
 3. Rename the columns to something that is easier to read 
 4. Now join the two datasets
 
-```{r}
+```{r data-clean}
 test_data_clean <- test_data |> 
   filter(stateabb == "CA") |> 
   select(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) |>
@@ -99,8 +103,53 @@ Question 2: Understanding the data summary table
 -   takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations
 -   uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average\* (remember our embrace and walrus operators!) **for each state for the specified grade**
 -   contains input validation to ensure the grade is numeric and there are **no more than three states** specified
--   applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes)
+-   applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes) (does not need to be the theme in the example!)
+
+**Hint:** You should create a new variable that is the state average of the user-given variable.
 
 *The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
 
-*Note: We will provide an example output graph to make sure students understand the format requireed*
+Please see below for an example of the desired output. 
+
+[Demo Output](demo.png)
+
+:::callout-tip
+Creating titles that include the variable names is tricky. Use the following code at the start of your function: `var_name <- deparse(substitute(var))`. Then you can use `paste()` later to create nice labels. Do not stress this too much. 
+:::
+
+```{r ggplot-function}
+states_plot_func <- function(grade_level, var, states){
+  stopifnot(is.numeric(grade_level))
+  stopifnot(length(states) < 3)
+  stopifnot(is.character(states))
+  
+  var_name <- deparse(substitute(var))
+  
+  test_data |> 
+    filter(stateabb %in% states,
+           grade == grade_level) |> 
+    group_by(stateabb, year) |> 
+    mutate(avg := mean({{ var }})) |> 
+    ggplot(mapping = aes(x = year,
+                       y = avg,
+                       color = stateabb)) +
+    geom_line() +
+    facet_wrap(vars(subject)) +
+    labs(title = paste("Grade", grade_level, "Average", var_name, "Over Time"),
+       subtitle = paste("Statwide Average of ", var_name),
+       y = NULL,
+       x = "Year",
+       color = "State") +
+    theme_economist() +
+    theme(legend.position = "right")
+}
+
+demo <- states_plot_func(8, cs_mn_all, c("CA", "MI"))
+
+ggsave("demo.png", plot = demo)
+
+```
+
+**Question 4:** Regression
+
+
