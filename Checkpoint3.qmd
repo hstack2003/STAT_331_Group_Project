@@ -84,9 +84,27 @@ cov_data <- read_csv("seda_cov_admindist_long_2025.1.csv")
 ```{r data-clean}
 test_data_clean <- test_data |> 
   filter(stateabb == "CA") |> 
-  select(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) |>
-  rename()
+  select(sedaadmin, sedaadminname, subject, grade, year, fips, stateabb, 
+         cs_mn_all, tot_asmt_all, cs_mn_fem, tot_asmt_fem, cs_mn_mal, tot_asmt_mal) |>
+  rename(avg_score_all = cs_mn_all,
+         avg_score_fem = cs_mn_fem,
+         avg_score_mal = cs_mn_mal)
+
+cov_data_clean <- cov_data |>
+  select(sedaadmin, grade, year, totenrl, perfl, sesall, perwht, perblk, perhsp)
+
+ca_data <- test_data_clean |>
+  left_join(cov_data_clean, by = c("sedaadmin", "grade", "year"))
+
+ca_data |>
+  distinct(sedaadmin) |>
+  nrow()
+
+ca_data <- ca_data |>
+  filter(!is.na(avg_score_all))
 ```
+
+
 
 Question 2: Understanding the data summary table
 
@@ -250,4 +268,52 @@ test_data |>
   labs(fill = "Average \ncs_mn_all", #leave labs() out of student version
        title = "State Average Test Scores (Cohort-Standardized)")
 ```
+
+
+
+**Question 7: Exploring ca_data**
+
+Using ca_data, filter to only include data from 2022 onwards. Then create a boxplot that shows the distribution of avg_score_all for each grade level, separated by subject. Make sure to:
+- color the boxplots by subject
+- add a point representing the mean for each boxplot
+- add an appropriate title and axis labels
+
+```{r boxplot}
+ca_data |> 
+  filter(year < 2020) |> 
+  ggplot(mapping = aes(x = factor(grade), y = avg_score_all, fill = subject)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "black") +
+  facet_wrap(~subject) +
+  labs(title = "Distribution of Pre-COVID Average Test scores by Grade and Subject",
+       x = "Grade",
+       y = "Average Score",
+       fill = "Subject") +
+  theme_minimal()
+```
+
+
+
+**Question 8: Gender Gap Over Time**
+Using ca_data, calculate the gender gap in average scores from each district, subject, and year. The gender gap is defined as avg_score_mal - avg_score_fem.
+
+Then, plot the statewide average gender gap over time, separated by subject. Make sure to add an appropriate title and axis labels.
+
+```{r}
+ca_data |> 
+  mutate(gender_gap = avg_score_mal - avg_score_fem) |> 
+  filter(!is.na(gender_gap)) |> 
+  group_by(year, subject) |> 
+  summarize(avg_gap = mean(gender_gap)) |> 
+  ggplot(mapping = aes(x = year, y = avg_gap, color = subject)) +
+  geom_line() +
+  geom_point() +
+  facet_wrap(~subject) +
+  labs(title = "Average Gender Gap in Test Scores Over Time in California",
+       x = "Year",
+       y = "Average Gender Gap (Male - Female)",
+       color = "Subject") +
+  theme_minimal()
+```
+
 
