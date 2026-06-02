@@ -20,6 +20,8 @@ execute:
 library(tidyverse)
 library(ggplot2)
 library(ggthemes)
+library(maps)
+library(mapproj)
 ```
 
 # About the Data
@@ -199,5 +201,53 @@ Be sure to nicely format your results!
 
 ```{r fix-regression}
 
+```
+
+# Mapping Test Scores
+
+Because out data are comparable across places, but not grades, we want to make a simple map to look at nationwide patterns. 
+
+Start with the full `test_data` and filter to grade 8 in the year 2013. Use the `map_data()` function to create a dataframe of **state** latitudes, longitudes, and FIPS numbers, then show the **state average of `cs_mn_all` on the map.**
+
+Please also customize the color gradient. [Use this site to choose a color scheme](https://colorbrewer2.org/#type=sequential&scheme=Greens&n=7). *Note: Do not choose the default blue scale.*
+
+Most of the plot theme code is provided, but you are required to **add code** to:
+
+- change the legend title
+- add a nice title
+- edit the provided code to increase the margins so the title has room to breathe
+
+:::callout-tip
+You will need to aggregate your data to the **state level** with some summary function and join with the `state_map` data.
+:::
+
+
+
+```{r load-state-map}
+state_map <- map_data("state")
+```
+
+```{r map}
+test_data |> 
+  filter(grade == 8,
+         year == 2013) |> 
+  group_by(fips) |> 
+  summarise(avg_cs_mn_all = mean(cs_mn_all)) |> 
+  left_join(state_map, by = join_by(fips == group)) |> 
+  ggplot(mapping = aes(x = long, 
+                       y = lat, 
+                       group = fips,
+                       fill = avg_cs_mn_all)) +
+  geom_polygon() +
+  scale_fill_gradient(low = "#a1d99b", high = "#238b45") +
+   theme(plot.title = element_text(hjust = 0.5),
+        panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(), 
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, "cm")) + #make these 0 on student version to edit
+  labs(fill = "Average \ncs_mn_all", #leave labs() out of student version
+       title = "State Average Test Scores (Cohort-Standardized)")
 ```
 
