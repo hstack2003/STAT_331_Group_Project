@@ -1,5 +1,5 @@
 ---
-title: "3 Questions for Checkpoint 3"
+title: "Lab with Solutions"
 author: "Ashley Martinez, Drew Collopy, Hannah Stackpole"
 editor: visual
 format: html 
@@ -18,10 +18,12 @@ execute:
 ```{r}
 #load packages here
 library(tidyverse)
+library(gtsummary)
 library(ggplot2)
 library(ggthemes)
 library(maps)
 library(mapproj)
+library(patchwork)
 ```
 
 # About the Data
@@ -91,7 +93,7 @@ test_data_clean <- test_data |>
          avg_score_mal = cs_mn_mal)
 
 cov_data_clean <- cov_data |>
-  select(sedaadmin, grade, year, totenrl, perfl, sesall, perwht, perblk, perhsp)
+  select(sedaadmin, grade, year, totenrl, perfl, sesall, perwht, perblk, perhsp, rural, perfrl, rswhtblk)
 
 ca_data <- test_data_clean |>
   left_join(cov_data_clean, by = c("sedaadmin", "grade", "year"))
@@ -185,7 +187,8 @@ We are going to run a simple model where the outcome variable is `cs_mn_all` and
 Format the model output nicely. 
 
 ```{r regression}
-
+mod_1 <- lm(avg_score_all ~ rural + perfrl + rswhtblk, data = ca_data)
+tbl_regression(mod_1, intercept = TRUE)
 ```
 
 
@@ -205,21 +208,57 @@ Please:
 - bonus points if you explore the [`patchwork`](https://patchwork.data-imaginist.com/articles/patchwork.html) package to arrange the plots nicely 
 
 ```{r multicollineary-plots}
+p_1 <- ca_data |> 
+  ggplot(mapping = aes(x = rural,
+                       y = perfrl)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              color = "pink1") +
+  labs(title = "Rural vs Percent FRL",
+       x = "Rural",
+       y = "Percent FRL") +
+  theme_economist()
 
+p_2 <- ca_data |> 
+  ggplot(mapping = aes(x = rural,
+                       y = rswhtblk)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              color = "yellow4") +
+  labs(title = "Rural vs Relative Diversity Index",
+       x = "Rural",
+       y = "Relative Diversity Index") +
+  theme_economist()
+
+p_3 <- ca_data |> 
+  ggplot(mapping = aes(x = rswhtblk,
+                       y = perfrl)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              color = "steelblue") +
+  labs(title = "Relative Diversity Index vs Percent FRL",
+       x = "Relative Diversity Index",
+       y = "Percent FRL") +
+  theme_economist()
+
+(p_1 + p_2) / p_3
 ```
 
 
 **Question 6: Fix Our Regression**
 
-Based on the results from the previous question, let's fix our regression. Remove the predictors you think should be removed (consider their correlation) and interpret the results of the regression in context. 
+Based on the results from the previous question, let's fix our regression. Remove the predictors you think should be removed (consider their correlation) and interpret the results of the regression in context. You may also leave them all in. Up to you, but justify your answer.
 
 :::callout-tip
 Be sure to nicely format your results!
 :::
 
 ```{r fix-regression}
-
+mod_2 <- lm(avg_score_all ~ rural + perfrl + rswhtblk, data = ca_data)
+tbl_regression(mod_2, intercept = TRUE)
 ```
+
+None of the scatterplots showed egregious correlation, so it is fine to keep all the predictors. 
 
 # Mapping Test Scores
 
@@ -274,6 +313,7 @@ test_data |>
 **Question 7: Exploring ca_data**
 
 Using ca_data, filter to only include data from 2022 onwards. Then create a boxplot that shows the distribution of avg_score_all for each grade level, separated by subject. Make sure to:
+
 - color the boxplots by subject
 - add a point representing the mean for each boxplot
 - add an appropriate title and axis labels
