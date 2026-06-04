@@ -24,11 +24,12 @@ library(ggthemes)
 library(maps)
 library(mapproj)
 library(patchwork)
+
 ```
 
 # About the Data
 
-Please download the following data and then take the time to read the paragraphs below. It is necessary to understand the data. 
+Please download the following data and then take the time to read the paragraphs below. It is necessary to understand the data.
 
 [Download test score data](seda_admindist_long_cs_2025.1.csv)
 
@@ -76,12 +77,12 @@ cov_data <- read_csv("seda_cov_admindist_long_2025.1.csv")
 
 # Cleaning and Understanding the Data
 
-**Question 1: Cleaning the data** Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps: 
+**Question 1: Cleaning the data** Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps:
 
-1. For test_data, filter it to only include states that have the abbreviation CA for California 
-2. Then select the columns shown in the "About the Data" above 
-3. Rename the columns to something that is easier to read 
-4. Now join the two datasets
+1.  For test_data, filter it to only include states that have the abbreviation CA for California
+2.  Then select the columns shown in the "About the Data" above
+3.  Rename the columns to something that is easier to read
+4.  Now join the two datasets
 
 ```{r data-clean}
 test_data_clean <- test_data |> 
@@ -106,18 +107,32 @@ ca_data <- ca_data |>
   filter(!is.na(avg_score_all))
 ```
 
+**Question 2: Creating and understating the data set**
+
+Start by creating a function called summary_table() that takes in test_data data set and shows the achievement scores based on grade level and subject 
+
+-   Group by subject and grade 
+-   Find the average achievement score using cs_mn_all
+-   Determine missing values in cs_mn_all 
+-   Return the summary table  
+```{r}
+summary_table <- function(data) {
+  data |>
+    group_by(subject, grade) |>
+    summarise(
+      avg_score = mean(cs_mn_all, na.rm = TRUE),
+      missing_values = sum(is.na(cs_mn_all)),
+      .groups = "drop"
+    )
+}
+
+summary_table(test_data)
+```
 
 
-Question 2: Understanding the data summary table
 
-- function called summary_table() 
-- use test_data dataset which was orginally seda admindist long and use variables subject, grade, and cs_mn_all 
--Subject= Tested subject(Math or RLA), grade= Tested Grade , cs_mn_all = Average achievement score for all students
-- group by subject and grade level 
-- find the average achievement score using cs_mn_all 
-- summarize the number of observations within each group
-- Determine any missing values
-- The summary table will then be returned. This will enable us to comprehend grade-level and subject patterns. 
+
+
 
 **Question 3: ggplot Function** Next, we will write a function that operates on the original test scores dataset, with the following requirements:
 
@@ -129,14 +144,14 @@ Question 2: Understanding the data summary table
 
 **Hint:** You should create a new variable that is the state average of the user-given variable.
 
-*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
+\*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
 
-Please see below for an example of the desired output. 
+Please see below for an example of the desired output.
 
 [Demo Output](demo.png)
 
-:::callout-tip
-Creating titles that include the variable names is tricky. Use the following code at the start of your function: `var_name <- deparse(substitute(var))`. Then you can use `paste()` later to create nice labels. Do not stress this too much. 
+::: callout-tip
+Creating titles that include the variable names is tricky. Use the following code at the start of your function: `var_name <- deparse(substitute(var))`. Then you can use `paste()` later to create nice labels. Do not stress this too much.
 :::
 
 ```{r ggplot-function}
@@ -176,36 +191,35 @@ ggsave("demo.png", plot = demo)
 
 **Question 4: Regression**
 
-Next, let's do a simple linear regression. We are once again looking at California data and we will focus on one grade (8th) and one subject (math). 
+Next, let's do a simple linear regression. We are once again looking at California data and we will focus on one grade (8th) and one subject (math).
 
-We are going to run a simple model where the outcome variable is `cs_mn_all` and there are three predictors from the covariate data: 
+We are going to run a simple model where the outcome variable is `cs_mn_all` and there are three predictors from the covariate data:
 
-- `rural`: proportion students in rural locale schools
-- `perfrl`: percent free and reduced lunch
-- `rswhtblk`: the relative diversity index captures white-black differences in exposure to white students at the average white/black student's school within the unit
+-   `rural`: proportion students in rural locale schools
+-   `perfrl`: percent free and reduced lunch
+-   `rswhtblk`: the relative diversity index captures white-black differences in exposure to white students at the average white/black student's school within the unit
 
-Format the model output nicely. 
+Format the model output nicely.
 
 ```{r regression}
 mod_1 <- lm(avg_score_all ~ rural + perfrl + rswhtblk, data = ca_data)
 tbl_regression(mod_1, intercept = TRUE)
 ```
 
-
 **Question 5: Exploring Multicollinearity**
 
-Think about the three predictors we included in our regression. Do you think any might be highly correlated? 
+Think about the three predictors we included in our regression. Do you think any might be highly correlated?
 
-Multicollinearity is the problem that arises when predictors are highly correlated, which creates problems such as large standard errors and coefficients with unexpected signs. This is because the model doesn't know how much of the variation is explained by the correlated predictors. 
+Multicollinearity is the problem that arises when predictors are highly correlated, which creates problems such as large standard errors and coefficients with unexpected signs. This is because the model doesn't know how much of the variation is explained by the correlated predictors.
 
-There are fancier ways to check for multicollinearity, but we will go the simple route and create plots to explore the relationship between predictors. 
+There are fancier ways to check for multicollinearity, but we will go the simple route and create plots to explore the relationship between predictors.
 
 Please:
 
-- create **three** plots, one for each pair of predictors
-- format them nicely
-- write 2-3 sentences about which ones have a strong relationship
-- bonus points if you explore the [`patchwork`](https://patchwork.data-imaginist.com/articles/patchwork.html) package to arrange the plots nicely 
+-   create **three** plots, one for each pair of predictors
+-   format them nicely
+-   write 2-3 sentences about which ones have a strong relationship
+-   bonus points if you explore the [`patchwork`](https://patchwork.data-imaginist.com/articles/patchwork.html) package to arrange the plots nicely
 
 ```{r multicollineary-plots}
 p_1 <- ca_data |> 
@@ -244,12 +258,11 @@ p_3 <- ca_data |>
 (p_1 + p_2) / p_3
 ```
 
-
 **Question 6: Fix Our Regression**
 
 Based on the results from the previous question, let's fix our regression. Remove the predictors you think should be removed (consider their correlation) and interpret the results of the regression in context. You may also leave them all in. Up to you, but justify your answer.
 
-:::callout-tip
+::: callout-tip
 Be sure to nicely format your results!
 :::
 
@@ -258,11 +271,11 @@ mod_2 <- lm(avg_score_all ~ rural + perfrl + rswhtblk, data = ca_data)
 tbl_regression(mod_2, intercept = TRUE)
 ```
 
-None of the scatterplots showed egregious correlation, so it is fine to keep all the predictors. 
+None of the scatterplots showed egregious correlation, so it is fine to keep all the predictors.
 
 # Mapping Test Scores
 
-Because out data are comparable across places, but not grades, we want to make a simple map to look at nationwide patterns. 
+Because out data are comparable across places, but not grades, we want to make a simple map to look at nationwide patterns.
 
 Start with the full `test_data` and filter to grade 8 in the year 2013. Use the `map_data()` function to create a dataframe of **state** latitudes, longitudes, and FIPS numbers, then show the **state average of `cs_mn_all` on the map.**
 
@@ -270,15 +283,13 @@ Please also customize the color gradient. [Use this site to choose a color schem
 
 Most of the plot theme code is provided, but you are required to **add code** to:
 
-- change the legend title
-- add a nice title
-- edit the provided code to increase the margins so the title has room to breathe
+-   change the legend title
+-   add a nice title
+-   edit the provided code to increase the margins so the title has room to breathe
 
-:::callout-tip
+::: callout-tip
 You will need to aggregate your data to the **state level** with some summary function and join with the `state_map` data.
 :::
-
-
 
 ```{r load-state-map}
 state_map <- map_data("state")
@@ -308,15 +319,13 @@ test_data |>
        title = "State Average Test Scores (Cohort-Standardized)")
 ```
 
-
-
 **Question 7: Exploring ca_data**
 
 Using ca_data, filter to only include data from 2022 onwards. Then create a boxplot that shows the distribution of avg_score_all for each grade level, separated by subject. Make sure to:
 
-- color the boxplots by subject
-- add a point representing the mean for each boxplot
-- add an appropriate title and axis labels
+-   color the boxplots by subject
+-   add a point representing the mean for each boxplot
+-   add an appropriate title and axis labels
 
 ```{r boxplot}
 ca_data |> 
@@ -332,10 +341,7 @@ ca_data |>
   theme_minimal()
 ```
 
-
-
-**Question 8: Gender Gap Over Time**
-Using ca_data, calculate the gender gap in average scores from each district, subject, and year. The gender gap is defined as avg_score_mal - avg_score_fem.
+**Question 8: Gender Gap Over Time** Using ca_data, calculate the gender gap in average scores from each district, subject, and year. The gender gap is defined as avg_score_mal - avg_score_fem.
 
 Then, plot the statewide average gender gap over time, separated by subject. Make sure to add an appropriate title and axis labels.
 
@@ -354,6 +360,25 @@ ca_data |>
        y = "Average Gender Gap (Male - Female)",
        color = "Subject") +
   theme_minimal()
+```
+**Question 9: Demographics**
+
+What are the demographics of California districts in this study? Investigate the variables perwht, perblk, and perhsp and summarize your findings in ~3 complete questions. 
+Reminder: 
+perwht= Percent White Students 
+perblk= Percent Black Students 
+perhsp= Percent Hispanic Students 
+
+```{r}
+ca_data |>
+  distinct(sedaadmin, .keep_all = TRUE) |>
+  select(perwht, perblk, perhsp) |>
+  summary()
+```
+**Question 10: **
+
+```{r}
+
 ```
 
 
