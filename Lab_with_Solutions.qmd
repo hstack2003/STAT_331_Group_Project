@@ -375,10 +375,39 @@ ca_data |>
   select(perwht, perblk, perhsp) |>
   summary()
 ```
-**Question 10: **
-
+**Question 10: Chi Square Test of Independence**
+Use chisq.test() to carry out a Chi-square test of independence between student demographic characteristics and whether a district is classified as rural or urban. 
+- Use 'perhsp' as your demographic characteristic 
+- Convert 'perhsp' into a categorical variable 
+- 
+-
+-
 ```{r}
+chi_data <- ca_data |>
+  distinct(sedaadmin, .keep_all = TRUE) |>
+  filter(!is.na(perhsp), !is.na(rural)) |>
+  mutate(
+    hispanic_level = ifelse(
+      perhsp > median(perhsp, na.rm = TRUE),
+      "High Hispanic",
+      "Low Hispanic"
+    ),
+    district_location = ifelse(
+      rural > 0.5,
+      "Mostly Rural",
+      "Mostly Urban/Non-rural"
+    )
+  )
 
+with(
+  chi_data,
+  table(hispanic_level, district_location)
+)
+
+with(
+  chi_data,
+  chisq.test(table(hispanic_level, district_location))
+)
 ```
 
 
