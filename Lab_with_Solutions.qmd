@@ -11,6 +11,7 @@ execute:
   message: false
   warning: false
   error: true
+  cache: true
 ---
 
 # Setup
@@ -138,17 +139,17 @@ summary_table(test_data)
 
 -   operates on the original `test_data` that is not limited to CA data
 -   takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations
--   uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average\* (remember our embrace and walrus operators!) **for each state for the specified grade**
+-   uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average* (remember our embrace and walrus operators!) **for each state for the specified grade**
 -   contains input validation to ensure the grade is numeric and there are **no more than three states** specified
 -   applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes) (does not need to be the theme in the example!)
 
 **Hint:** You should create a new variable that is the state average of the user-given variable.
 
-\*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
+*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
 
 Please see below for an example of the desired output.
 
-[Demo Output](demo.png)
+![Demo Output](demo.png)
 
 ::: callout-tip
 Creating titles that include the variable names is tricky. Use the following code at the start of your function: `var_name <- deparse(substitute(var))`. Then you can use `paste()` later to create nice labels. Do not stress this too much.
@@ -187,7 +188,7 @@ ggsave("demo.png", plot = demo)
 
 ```
 
-# Regression Analysis
+# Data Analysis
 
 **Question 4: Regression**
 
@@ -275,7 +276,9 @@ None of the scatterplots showed egregious correlation, so it is fine to keep all
 
 # Mapping Test Scores
 
-Because out data are comparable across places, but not grades, we want to make a simple map to look at nationwide patterns.
+**Question 7: Mapping State Averages**
+
+Because our data are comparable across places, but not grades, we want to make a simple map to look at nationwide patterns.
 
 Start with the full `test_data` and filter to grade 8 in the year 2013. Use the `map_data()` function to create a dataframe of **state** latitudes, longitudes, and FIPS numbers, then show the **state average of `cs_mn_all` on the map.**
 
@@ -289,6 +292,8 @@ Most of the plot theme code is provided, but you are required to **add code** to
 
 ::: callout-tip
 You will need to aggregate your data to the **state level** with some summary function and join with the `state_map` data.
+
+Note: Some states have missing data. Do not worry about this.
 :::
 
 ```{r load-state-map}
@@ -300,7 +305,7 @@ test_data |>
   filter(grade == 8,
          year == 2013) |> 
   group_by(fips) |> 
-  summarise(avg_cs_mn_all = mean(cs_mn_all)) |> 
+  summarise(avg_cs_mn_all = mean(cs_mn_all, na.rm = TRUE)) |> 
   left_join(state_map, by = join_by(fips == group)) |> 
   ggplot(mapping = aes(x = long, 
                        y = lat, 
@@ -319,7 +324,7 @@ test_data |>
        title = "State Average Test Scores (Cohort-Standardized)")
 ```
 
-**Question 7: Exploring ca_data**
+**Question 8: Exploring ca_data**
 
 Using ca_data, filter to only include data from 2022 onwards. Then create a boxplot that shows the distribution of avg_score_all for each grade level, separated by subject. Make sure to:
 
@@ -341,7 +346,7 @@ ca_data |>
   theme_minimal()
 ```
 
-**Question 8: Gender Gap Over Time** Using ca_data, calculate the gender gap in average scores from each district, subject, and year. The gender gap is defined as avg_score_mal - avg_score_fem.
+**Question 9: Gender Gap Over Time** Using ca_data, calculate the gender gap in average scores from each district, subject, and year. The gender gap is defined as avg_score_mal - avg_score_fem.
 
 Then, plot the statewide average gender gap over time, separated by subject. Make sure to add an appropriate title and axis labels.
 
@@ -361,7 +366,7 @@ ca_data |>
        color = "Subject") +
   theme_minimal()
 ```
-**Question 9: Demographics**
+**Question 10: Demographics**
 
 What are the demographics of California districts in this study? Investigate the variables perwht, perblk, and perhsp and summarize your findings in ~3 complete questions. 
 Reminder: 
@@ -375,7 +380,7 @@ ca_data |>
   select(perwht, perblk, perhsp) |>
   summary()
 ```
-**Question 10: Chi Square Test of Independence**
+**Question 11: Chi Square Test of Independence**
 Use chisq.test() to carry out a Chi-square test of independence between student demographic characteristics and whether a district is classified as rural or urban. 
 - Use 'perhsp' as your demographic characteristic 
 - Convert 'perhsp' into a categorical variable (high vs low representation)
