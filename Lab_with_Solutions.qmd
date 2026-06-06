@@ -76,7 +76,7 @@ test_data <- read_csv("seda_admindist_long_cs_2025.1.csv")
 cov_data <- read_csv("seda_cov_admindist_long_2025.1.csv")
 ```
 
-# Cleaning and Understanding the Data
+# Section 1: Cleaning and Understanding the Data 
 
 **Question 1: Cleaning the data** Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps:
 
@@ -108,7 +108,7 @@ ca_data <- ca_data |>
   filter(!is.na(avg_score_all))
 ```
 
-**Question 2: Creating and understating the data set**
+**Question 2: Summary table*
 
 Start by creating a function called summary_table() that takes in test_data data set and shows the achievement scores based on grade level and subject 
 
@@ -130,12 +130,70 @@ summary_table <- function(data) {
 summary_table(test_data)
 ```
 
+**Question 3: Demographics**
+
+What are the demographics of California districts in this study? Investigate the variables perwht, perblk, and perhsp and summarize your findings in ~3 complete sentences. 
+Reminder: 
+perwht= Percent White Students 
+perblk= Percent Black Students 
+perhsp= Percent Hispanic Students 
+
+```{r}
+ca_data |>
+  distinct(sedaadmin, .keep_all = TRUE) |>
+  select(perwht, perblk, perhsp) |>
+  summary()
+```
 
 
+#Section 2: Data Visualization 
 
 
+**Question 4: Exploring ca_data**
 
-**Question 3: ggplot Function** Next, we will write a function that operates on the original test scores dataset, with the following requirements:
+Using ca_data, filter to only include data from 2022 onwards. Then create a boxplot that shows the distribution of avg_score_all for each grade level, separated by subject. Make sure to:
+
+-   color the boxplots by subject
+-   add a point representing the mean for each boxplot
+-   add an appropriate title and axis labels
+
+```{r boxplot}
+ca_data |> 
+  filter(year < 2020) |> 
+  ggplot(mapping = aes(x = factor(grade), y = avg_score_all, fill = subject)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "black") +
+  facet_wrap(~subject) +
+  labs(title = "Distribution of Pre-COVID Average Test scores by Grade and Subject",
+       x = "Grade",
+       y = "Average Score",
+       fill = "Subject") +
+  theme_minimal()
+```
+
+**Question 5: Gender Gap Over Time** Using ca_data, calculate the gender gap in average scores from each district, subject, and year. The gender gap is defined as avg_score_mal - avg_score_fem.
+
+Then, plot the statewide average gender gap over time, separated by subject. Make sure to add an appropriate title and axis labels.
+
+```{r}
+ca_data |> 
+  mutate(gender_gap = avg_score_mal - avg_score_fem) |> 
+  filter(!is.na(gender_gap)) |> 
+  group_by(year, subject) |> 
+  summarize(avg_gap = mean(gender_gap)) |> 
+  ggplot(mapping = aes(x = year, y = avg_gap, color = subject)) +
+  geom_line() +
+  geom_point() +
+  facet_wrap(~subject) +
+  labs(title = "Average Gender Gap in Test Scores Over Time in California",
+       x = "Year",
+       y = "Average Gender Gap (Male - Female)",
+       color = "Subject") +
+  theme_minimal()
+```
+
+
+**Question 6: ggplot Function** Next, we will write a function that operates on the original test scores dataset, with the following requirements:
 
 -   operates on the original `test_data` that is not limited to CA data
 -   takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations
@@ -188,9 +246,9 @@ ggsave("demo.png", plot = demo)
 
 ```
 
-# Data Analysis
+# Section 3: Regression Analysis
 
-**Question 4: Regression**
+**Question 7: Regression**
 
 Next, let's do a simple linear regression. We are once again looking at California data and we will focus on one grade (8th) and one subject (math).
 
@@ -207,7 +265,7 @@ mod_1 <- lm(avg_score_all ~ rural + perfrl + rswhtblk, data = ca_data)
 tbl_regression(mod_1, intercept = TRUE)
 ```
 
-**Question 5: Exploring Multicollinearity**
+**Question 8: Exploring Multicollinearity**
 
 Think about the three predictors we included in our regression. Do you think any might be highly correlated?
 
@@ -259,7 +317,7 @@ p_3 <- ca_data |>
 (p_1 + p_2) / p_3
 ```
 
-**Question 6: Fix Our Regression**
+**Question 9: Fix Our Regression**
 
 Based on the results from the previous question, let's fix our regression. Remove the predictors you think should be removed (consider their correlation) and interpret the results of the regression in context. You may also leave them all in. Up to you, but justify your answer.
 
@@ -274,9 +332,45 @@ tbl_regression(mod_2, intercept = TRUE)
 
 None of the scatterplots showed egregious correlation, so it is fine to keep all the predictors.
 
-# Mapping Test Scores
+#Section 4: Chi-Square Test of Independence 
 
-**Question 7: Mapping State Averages**
+**Question 10: Chi Square Test of Independence**
+Use chisq.test() to carry out a Chi-square test of independence between student demographic characteristics and whether a district is classified as rural or urban. 
+- Use 'perhsp' as your demographic characteristic 
+- Convert 'perhsp' into a categorical variable (high vs low representation)
+```{r}
+chi_data <- ca_data |>
+  distinct(sedaadmin, .keep_all = TRUE) |>
+  filter(!is.na(perhsp), !is.na(rural)) |>
+  mutate(
+    hispanic_level = ifelse(
+      perhsp > median(perhsp, na.rm = TRUE),
+      "High Hispanic",
+      "Low Hispanic"
+    ),
+    district_location = ifelse(
+      rural > 0.5,
+      "Rural",
+      "Urban"
+    )
+  )
+
+with(
+  chi_data,
+  table(hispanic_level, district_location)
+)
+
+with(
+  chi_data,
+  chisq.test(table(hispanic_level, district_location))
+)
+```
+
+
+
+# Section 5: Mapping Test Scores
+
+**Question 11: Mapping State Averages**
 
 Because our data are comparable across places, but not grades, we want to make a simple map to look at nationwide patterns.
 
@@ -323,93 +417,4 @@ test_data |>
   labs(fill = "Average \ncs_mn_all", #leave labs() out of student version
        title = "State Average Test Scores (Cohort-Standardized)")
 ```
-
-**Question 8: Exploring ca_data**
-
-Using ca_data, filter to only include data from 2022 onwards. Then create a boxplot that shows the distribution of avg_score_all for each grade level, separated by subject. Make sure to:
-
--   color the boxplots by subject
--   add a point representing the mean for each boxplot
--   add an appropriate title and axis labels
-
-```{r boxplot}
-ca_data |> 
-  filter(year < 2020) |> 
-  ggplot(mapping = aes(x = factor(grade), y = avg_score_all, fill = subject)) +
-  geom_boxplot() +
-  stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "black") +
-  facet_wrap(~subject) +
-  labs(title = "Distribution of Pre-COVID Average Test scores by Grade and Subject",
-       x = "Grade",
-       y = "Average Score",
-       fill = "Subject") +
-  theme_minimal()
-```
-
-**Question 9: Gender Gap Over Time** Using ca_data, calculate the gender gap in average scores from each district, subject, and year. The gender gap is defined as avg_score_mal - avg_score_fem.
-
-Then, plot the statewide average gender gap over time, separated by subject. Make sure to add an appropriate title and axis labels.
-
-```{r}
-ca_data |> 
-  mutate(gender_gap = avg_score_mal - avg_score_fem) |> 
-  filter(!is.na(gender_gap)) |> 
-  group_by(year, subject) |> 
-  summarize(avg_gap = mean(gender_gap)) |> 
-  ggplot(mapping = aes(x = year, y = avg_gap, color = subject)) +
-  geom_line() +
-  geom_point() +
-  facet_wrap(~subject) +
-  labs(title = "Average Gender Gap in Test Scores Over Time in California",
-       x = "Year",
-       y = "Average Gender Gap (Male - Female)",
-       color = "Subject") +
-  theme_minimal()
-```
-**Question 10: Demographics**
-
-What are the demographics of California districts in this study? Investigate the variables perwht, perblk, and perhsp and summarize your findings in ~3 complete questions. 
-Reminder: 
-perwht= Percent White Students 
-perblk= Percent Black Students 
-perhsp= Percent Hispanic Students 
-
-```{r}
-ca_data |>
-  distinct(sedaadmin, .keep_all = TRUE) |>
-  select(perwht, perblk, perhsp) |>
-  summary()
-```
-**Question 11: Chi Square Test of Independence**
-Use chisq.test() to carry out a Chi-square test of independence between student demographic characteristics and whether a district is classified as rural or urban. 
-- Use 'perhsp' as your demographic characteristic 
-- Convert 'perhsp' into a categorical variable (high vs low representation)
-```{r}
-chi_data <- ca_data |>
-  distinct(sedaadmin, .keep_all = TRUE) |>
-  filter(!is.na(perhsp), !is.na(rural)) |>
-  mutate(
-    hispanic_level = ifelse(
-      perhsp > median(perhsp, na.rm = TRUE),
-      "High Hispanic",
-      "Low Hispanic"
-    ),
-    district_location = ifelse(
-      rural > 0.5,
-      "Rural",
-      "Urban"
-    )
-  )
-
-with(
-  chi_data,
-  table(hispanic_level, district_location)
-)
-
-with(
-  chi_data,
-  chisq.test(table(hispanic_level, district_location))
-)
-```
-
 
