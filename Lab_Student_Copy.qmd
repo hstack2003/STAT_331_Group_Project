@@ -12,3 +12,247 @@ execute:
   warning: false
   error: true
 ---
+
+# Setup
+
+```{r set-up}
+#load packages here
+```
+
+# About the Data
+
+Please download the following data and then take the time to read the paragraphs below. It is necessary to understand the data.
+
+[Download test score data](seda_admindist_long_cs_2025.1.csv)
+
+[Download covariate data](seda_cov_admindist_long_2025.1.csv)
+
+The data for this lab comes from The Stanford Education Data Archive (SEDA), which is maintained by the Educational Opportunity Project (EOP) at Stanford University (https:\\edopportunity.org). There is a plethora of nationwide data on academic achievement and school demographics/inequality.
+
+We will focus on a "long" dataset that contains math and Reading/English Language Arts (RLA) performance for administrative school districts in the U.S. for the 2008-09 through 2018-19 and 2021-22 through 2024-25 school years.
+
+While the construction of the data uses a complex model, it is important to understand that these are not raw test scores. Rather, they are cohort-standardized scores. This means that the values can be interpreted as the number of standard deviations above or below the national average scores of four reference groups (students who were in fourth grade in the years 2009, 2011, 2013, and 2015).
+
+Practically speaking, this means that the estimates are comparable across time and across places, but not across grades or subjects. Please keep this in mind when designing graphs/analyses. If you would like to learn more about our data, you can check out the following resources:
+
+-   [Technical Documentation](https://stacks.stanford.edu/file/hm970gr1371/SEDA_documentation_v2025.1.pdf#page=4.36)
+-   [SEDA site (information about the project and downloadable codebooks with variable descriptions)](https://edopportunity.org/trends/data/downloads/#testscore-2025)
+
+*Note: the relevant codebooks are `seda_codebook_admindist_2025.1` and `seda_codebook_cov_admindist_2025.1`. You will need to navigate to the sheets that match the file names for our specific datasets.*
+
+Below are descriptions of the test data variables we will focus on, but you are encouraged to check out the codebook if you wish to explore other variables.
+
+| Variable        | Description                                     |
+|-----------------|-------------------------------------------------|
+| `sedaadmin`     | SEDA Admin ID                                   |
+| `sedaadminname` | Administrative District Name                    |
+| `subject`       | Tested Subject                                  |
+| `grade`         | Tested Grade                                    |
+| `year`          | Spring of Tested Year                           |
+| `fips`          | State FIPS Code                                 |
+| `stateabb`      | State Abbreviation                              |
+| `cs_mn_all`     | Admin. Dist. Subject-Grade-Year Average         |
+| `tot_asmt_all`  | Total Number Tested in the Subject-Grade-Year   |
+| `cs_mn_fem`     | Admin. Dist. Subject-Grade-Year Average Female  |
+| `tot_asmt_fem`  | Number Females Tested in the Subject-Grade-Year |
+| `cs_mn_mal`     | Admin. Dist. Subject-Grade-Year Average Male    |
+| `tot_asmt_mal`  | Number Males Tested in the Subject-Grade-Year   |
+
+The covariate data contains a variety of data on city size, school locale, school demographics, student poverty rates (measured by free/reduced school lunch status), household income and unemployment data, and school diversity/"segregation" measures.
+
+# Reading in the Data
+
+```{r read-data}
+# code to load data here
+```
+
+# Section 1: Cleaning and Understanding the Data
+
+**Question 1: Cleaning the data**
+
+Before we begin our analysis, we need to clean and join our two datasets. Complete the following steps:
+
+1.  For `test_data`, filter it to only include states that have the abbreviation CA for California
+2.  Then select the columns shown in the "About the Data" above
+3.  Rename the columns to something that is easier to read
+4.  Now join the two datasets
+
+```{r data-clean}
+# Code to clean data here
+```
+
+**Question 2: Summary table**
+
+Start by creating a function called `summary_table()` that takes in `test_data` data set and shows the achievement scores based on grade level and subject
+
+-   Group by subject and grade
+-   Find the average achievement score using `cs_mn_all`
+-   Determine missing values in `cs_mn_all`
+-   Return the summary table
+
+```{r}
+# Code for summary table function
+```
+
+**Question 3: Demographics**
+
+What are the demographics of California districts in this study? Investigate the variables `perwht`, `perblk`, and `perhsp` and summarize your findings in \~3 complete sentences.
+
+Reminder:
+
+-   `perwht`: Percent White Students
+-   `perblk`: Percent Black Students
+-   `perhsp`: Percent Hispanic Students
+
+```{r}
+# Code for #3
+```
+
+# Section 2: Data Visualization
+
+**Question 4: Exploring ca_data**
+
+Using `ca_data`, filter to only include data from years prior to 2020. Then create a boxplot that shows the distribution of `avg_score_all` for each grade level, separated by subject. Make sure to:
+
+-   color the boxplots by subject
+-   add a point representing the mean for each boxplot
+-   add an appropriate title and axis labels
+
+```{r boxplot}
+# Boxplot code here
+```
+
+**Question 5: Gender Gap Over Time**
+
+Using `ca_data`, calculate the gender gap in average scores from each district, subject, and year. The gender gap is defined as `avg_score_mal` - `avg_score_fem`.
+
+Then, plot the statewide average gender gap over time, separated by subject. Make sure to add an appropriate title and axis labels.
+
+```{r ggplot}
+# Gender gap plot code here
+```
+
+**Question 6: ggplot Function**
+
+Next, we will write a function that operates on the original test scores dataset, with the following requirements:
+
+-   operates on the original `test_data` that is not limited to CA data
+-   takes **three** arguments: a grade, a variable of interest, and a list of state abbreviations
+-   uses ggplot2 to create **two side-by-side graphs**. The graphs should be RLA and math, and depict the variable of interest average\* (remember our embrace and walrus operators!) **for each state for the specified grade**
+-   contains input validation to ensure the grade is numeric and there are **no more than three states** specified
+-   applies a **ggplot theme** of your choosing (ggthemes or ggplot2 themes) (does not need to be the theme in the example!)
+
+**Hint:** You should create a new variable that is the state average of the user-given variable.
+
+\*The average will not be the best state-wide measure of the variable as it is the average of the district data, not weighted by district size. We will ignore this limitation for the sake of function-writing practice!
+
+Please see below for an example of the desired output.
+
+![Demo Output](demo.png)
+
+::: callout-tip
+Creating titles that include the variable names is tricky. Use the following code at the start of your function: `var_name <- deparse(substitute(var))`. Then you can use `paste()` later to create nice labels. Do not stress this too much.
+:::
+
+```{r ggplot-function}
+# ggplot function code here
+```
+
+# Section 3: Regression Analysis
+
+**Question 7: Regression**
+
+Next, let's do a simple linear regression. We are once again looking at California data and we will focus on one grade (8th) and one subject (math).
+
+We are going to run a simple model where the outcome variable is `avg_mn_all` and there are three predictors from the covariate data:
+
+-   `rural`: proportion students in rural locale schools
+-   `perfrl`: percent free and reduced lunch
+-   `rswhtblk`: the relative diversity index captures white-black differences in exposure to white students at the average white/black student's school within the unit
+
+Format the model output nicely.
+
+```{r regression}
+# regression code here
+```
+
+**Question 8: Exploring Multicollinearity**
+
+Think about the three predictors we included in our regression. Do you think any might be highly correlated?
+
+Multicollinearity is the problem that arises when predictors are highly correlated, which creates problems such as large standard errors and coefficients with unexpected signs. This is because the model doesn't know how much of the variation is explained by the correlated predictors.
+
+There are fancier ways to check for multicollinearity, but we will go the simple route and create plots to explore the relationship between predictors.
+
+Please:
+
+-   create **three** plots, one for each pair of predictors
+-   format them nicely
+-   write 2-3 sentences about which ones have a strong relationship
+-   bonus points if you explore the [`patchwork`](https://patchwork.data-imaginist.com/articles/patchwork.html) package to arrange the plots nicely
+
+```{r multicollineary-plots}
+# Code for plots here
+```
+
+**Question 9: Fix Our Regression**
+
+Based on the results from the previous question, let's fix our regression. Remove the predictors you think should be removed (consider their correlation) and interpret the results of the regression in context. You may also leave them all in. Up to you, but justify your answer.
+
+::: callout-tip
+Be sure to nicely format your results!
+:::
+
+```{r fix-regression}
+# updated regression code here
+```
+
+None of the scatterplots showed egregious correlation, so it is fine to keep all the predictors.
+
+# Section 4: Chi-Square Test of Independence
+
+**Question 10: Chi Square Test of Independence**
+
+Use `chisq.test()` to carry out a Chi-square test of independence between student demographic characteristics and whether a district is classified as rural or urban. - Use `perhsp` as your demographic characteristic - Convert `perhsp` into a categorical variable (high vs low representation)
+
+```{r}
+# code for Chi Square test here
+```
+
+# Section 5: Mapping Test Scores
+
+**Question 11: Mapping State Averages**
+
+Because our data are comparable across places, but not grades, we want to make a simple map to look at nationwide patterns.
+
+Start with the full `test_data` and filter to grade 8 in the year 2013. Use the `map_data()` function to create a dataframe of **state** latitudes, longitudes, and FIPS numbers, then show the **state average of `cs_mn_all` on the map.**
+
+Please also customize the color gradient. [Use this site to choose a color scheme](https://colorbrewer2.org/#type=sequential&scheme=Greens&n=7). *Note: Do not choose the default blue scale.*
+
+Most of the plot theme code is provided, but you are required to **add code** to:
+
+-   change the legend title
+-   add a nice title
+-   edit the provided code to increase the margins so the title has room to breathe
+
+::: callout-tip
+You will need to aggregate your data to the **state level** with some summary function and join with the `state_map` data.
+
+Note: Some states have missing data. Do not worry about this.
+:::
+
+```{r load-state-map}
+state_map <- map_data("state")
+```
+
+```{r map}
+# code for map here +
+   theme(plot.title = element_text(hjust = 0.5),
+        panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(), 
+        plot.margin = margin(0, 0, 0, 0, "cm"))  # Adjust these!
+  # code for nice labels here
+```
