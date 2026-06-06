@@ -25,7 +25,6 @@ library(ggthemes)
 library(maps)
 library(mapproj)
 library(patchwork)
-
 ```
 
 # About the Data
@@ -108,7 +107,7 @@ ca_data <- ca_data |>
   filter(!is.na(avg_score_all))
 ```
 
-**Question 2: Summary table*
+**Question 2: Summary table**
 
 Create a function called summary_table() that takes in ca_data data set and shows the achievement scores based on grade level and subject 
 
@@ -145,8 +144,8 @@ ca_data |>
 ```
 
 
-#Section 2: Data Visualization 
 
+#Section 2: Data Visualization 
 
 **Question 4: Exploring ca_data**
 
@@ -330,6 +329,7 @@ tbl_regression(mod_2, intercept = TRUE)
 ```
 
 None of the scatterplots showed egregious correlation, so it is fine to keep all the predictors.
+
 
 #Section 4: Chi-Square Test of Independence 
 
