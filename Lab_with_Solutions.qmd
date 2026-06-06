@@ -109,23 +109,24 @@ ca_data <- ca_data |>
 
 **Question 2: Summary table**
 
-Create a function called summary_table() that takes in ca_data data set and shows the achievement scores based on grade level and subject 
+Start by creating a function called summary_table() that takes in test_data data set and shows the achievement scores based on grade level and subject 
 
 -   Group by subject and grade 
--   Find the average achievement score using avg_score_all
--   Determine missing values in avg_score_all 
+-   Find the average achievement score using cs_mn_all
+-   Determine missing values in cs_mn_all 
 -   Return the summary table  
 ```{r}
 summary_table <- function(data) {
   data |>
     group_by(subject, grade) |>
     summarise(
-      avg_score = mean(avg_score_all, na.rm = TRUE),
-      missing_values = sum(is.na(avg_score_all)),
+      avg_score = mean(cs_mn_all, na.rm = TRUE),
+      missing_values = sum(is.na(cs_mn_all)),
       .groups = "drop"
     )
 }
-summary_table(ca_data)
+
+summary_table(test_data)
 ```
 
 **Question 3: Demographics**
@@ -145,7 +146,7 @@ ca_data |>
 
 
 
-#Section 2: Data Visualization 
+# Section 2: Data Visualization 
 
 **Question 4: Exploring ca_data**
 
@@ -250,7 +251,7 @@ ggsave("demo.png", plot = demo)
 
 Next, let's do a simple linear regression. We are once again looking at California data and we will focus on one grade (8th) and one subject (math).
 
-We are going to run a simple model where the outcome variable is `avg_score_all` and there are three predictors from the covariate data:
+We are going to run a simple model where the outcome variable is `cs_mn_all` and there are three predictors from the covariate data:
 
 -   `rural`: proportion students in rural locale schools
 -   `perfrl`: percent free and reduced lunch
@@ -331,7 +332,7 @@ tbl_regression(mod_2, intercept = TRUE)
 None of the scatterplots showed egregious correlation, so it is fine to keep all the predictors.
 
 
-#Section 4: Chi-Square Test of Independence 
+# Section 4: Chi-Square Test of Independence 
 
 **Question 10: Chi Square Test of Independence**
 Use chisq.test() to carry out a Chi-square test of independence between student demographic characteristics and whether a district is classified as rural or urban. 

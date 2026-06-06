@@ -2212,7 +2212,9 @@ vertical-align: -.125em;
   <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the Data</a></li>
   <li><a href="#reading-in-the-data" id="toc-reading-in-the-data" class="nav-link" data-scroll-target="#reading-in-the-data">Reading in the Data</a></li>
   <li><a href="#section-1-cleaning-and-understanding-the-data" id="toc-section-1-cleaning-and-understanding-the-data" class="nav-link" data-scroll-target="#section-1-cleaning-and-understanding-the-data">Section 1: Cleaning and Understanding the Data</a></li>
+  <li><a href="#section-2-data-visualization" id="toc-section-2-data-visualization" class="nav-link" data-scroll-target="#section-2-data-visualization">Section 2: Data Visualization</a></li>
   <li><a href="#section-3-regression-analysis" id="toc-section-3-regression-analysis" class="nav-link" data-scroll-target="#section-3-regression-analysis">Section 3: Regression Analysis</a></li>
+  <li><a href="#section-4-chi-square-test-of-independence" id="toc-section-4-chi-square-test-of-independence" class="nav-link" data-scroll-target="#section-4-chi-square-test-of-independence">Section 4: Chi-Square Test of Independence</a></li>
   <li><a href="#section-5-mapping-test-scores" id="toc-section-5-mapping-test-scores" class="nav-link" data-scroll-target="#section-5-mapping-test-scores">Section 5: Mapping Test Scores</a></li>
   </ul>
 </nav>
@@ -2432,7 +2434,9 @@ vertical-align: -.125em;
  NA&#39;s   :9        NA&#39;s   :9         NA&#39;s   :9       </code></pre>
 </div>
 </div>
-<p>#Section 2: Data Visualization</p>
+</section>
+<section id="section-2-data-visualization" class="level1">
+<h1>Section 2: Data Visualization</h1>
 <p><strong>Question 4: Exploring ca_data</strong></p>
 <p>Using ca_data, filter to only include data from 2022 onwards. Then create a boxplot that shows the distribution of avg_score_all for each grade level, separated by subject. Make sure to:</p>
 <ul>
@@ -3520,7 +3524,9 @@ height: 0px !important;
 </div>
 </div>
 <p>None of the scatterplots showed egregious correlation, so it is fine to keep all the predictors.</p>
-<p>#Section 4: Chi-Square Test of Independence</p>
+</section>
+<section id="section-4-chi-square-test-of-independence" class="level1">
+<h1>Section 4: Chi-Square Test of Independence</h1>
 <p><strong>Question 10: Chi Square Test of Independence</strong> Use chisq.test() to carry out a Chi-square test of independence between student demographic characteristics and whether a district is classified as rural or urban. - Use ‘perhsp’ as your demographic characteristic - Convert ‘perhsp’ into a categorical variable (high vs low representation)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>chi_data <span class="ot">&lt;-</span> ca_data <span class="sc">|&gt;</span></span>
@@ -4226,7 +4232,7 @@ Tip
 <span id="cb22-152"><a href="#cb22-152" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-153"><a href="#cb22-153" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-154"><a href="#cb22-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-155"><a href="#cb22-155" aria-hidden="true" tabindex="-1"></a>#Section 2: Data Visualization </span>
+<span id="cb22-155"><a href="#cb22-155" aria-hidden="true" tabindex="-1"></a><span class="fu"># Section 2: Data Visualization </span></span>
 <span id="cb22-156"><a href="#cb22-156" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-157"><a href="#cb22-157" aria-hidden="true" tabindex="-1"></a>**Question 4: Exploring ca_data**</span>
 <span id="cb22-158"><a href="#cb22-158" aria-hidden="true" tabindex="-1"></a></span>
@@ -4412,7 +4418,7 @@ Tip
 <span id="cb22-340"><a href="#cb22-340" aria-hidden="true" tabindex="-1"></a>None of the scatterplots showed egregious correlation, so it is fine to keep all the predictors.</span>
 <span id="cb22-341"><a href="#cb22-341" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-342"><a href="#cb22-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-343"><a href="#cb22-343" aria-hidden="true" tabindex="-1"></a>#Section 4: Chi-Square Test of Independence </span>
+<span id="cb22-343"><a href="#cb22-343" aria-hidden="true" tabindex="-1"></a><span class="fu"># Section 4: Chi-Square Test of Independence </span></span>
 <span id="cb22-344"><a href="#cb22-344" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-345"><a href="#cb22-345" aria-hidden="true" tabindex="-1"></a>**Question 10: Chi Square Test of Independence**</span>
 <span id="cb22-346"><a href="#cb22-346" aria-hidden="true" tabindex="-1"></a>Use chisq.test() to carry out a Chi-square test of independence between student demographic characteristics and whether a district is classified as rural or urban. </span>
